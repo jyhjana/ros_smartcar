@@ -1,0 +1,6 @@
+<launch>
+  <arg name="cmd_topic" default="cmd_vel" />
+  <node pkg="smartcar_teleop" type="smartcar_keyboard_teleop" name="smartcar_teleop">
+    <remap from="cmd_vel" to="$(arg cmd_topic)" />
+  </node>
+</launch>

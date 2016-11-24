@@ -1,0 +1,18 @@
+<launch>
+    <param name="/use_sim_time" value="false" />
+	
+	<!-- Load the URDF/Xacro model of our robot -->
+    <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find smartcar_description)/urdf/smartcar.urdf.xacro'" />
+	<arg name="gui" default="true" />
+
+	<param name="robot_description" command="$(arg urdf_file)" />
+	<param name="use_gui" value="$(arg gui)"/>
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+	</node>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    </node>
+
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.rviz" />
+</launch>
